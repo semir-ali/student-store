@@ -232,3 +232,5 @@ When POST /orders is requested by the user, the following should happen:
       { "order_item_id": 2, "product_id": 7, "quantity": 1, "price": 14.99 }
     ]
   }
+
+#### Decision Log
