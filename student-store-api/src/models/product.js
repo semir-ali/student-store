@@ -6,10 +6,20 @@ class Product {
   // READ all — supports optional `category` filter and `sort` by price.
   // GET /products  (query params: category, sort)
   static async list({ category, sort } = {}) {
-    return prisma.product.findMany({
-      where: category ? { category } : undefined,
-      orderBy: sort ? { price: sort === 'desc' ? 'desc' : 'asc' } : undefined,
-    })
+    // Build the query dynamically so only the provided filters are applied.
+    const query = {}
+
+    // Filter by category (exact match) when provided.
+    if (category) {
+      query.where = { category }
+    }
+
+    // Sort by price: only apply for the documented values 'asc' / 'desc'.
+    if (sort === 'asc' || sort === 'desc') {
+      query.orderBy = { price: sort }
+    }
+
+    return prisma.product.findMany(query)
   }
 
   // READ one by id — returns null if not found.

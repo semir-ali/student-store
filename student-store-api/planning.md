@@ -50,7 +50,7 @@ GET /products
 - HTTP Method & Path: GET /products
 - Body: N/A
 - Request Params: N/A
-- Query Params: category, sort
+- Query Params: category, sort (optional -> default behavior for no provided parameters is returning all items unsorted)
 - Success Response:
   Status: 200
   Body Example: [ { "id": 1, "name": "Hoodie", "description": "...", "price": 39.99, "image_url": "...", "category": "clothing" } ]
@@ -233,4 +233,10 @@ When POST /orders is requested by the user, the following should happen:
     ]
   }
 
-#### Decision Log
+## Decisions Log — Product Model
+
+- **Schema translation that went smoothly**: All the ids successfully incremented for each POST request, the names/description/image/category all translated well into strings, and price was translated well into a float
+
+- **Field decision I made during implementation that wasn't in the original spec**: For error handling when POST requests don't have a specific required field (i.e. category), I made it such that this specific field is returned back into the user and I updated the logic for the error behavior for delete such that it also included error handling for PUT requests if the Product updated does not exist
+
+- **Route behavior that needed a spec update**: For the above two field changes, I needed to include relevant error codes for the failed request. For the POST request not having a category this is 400 (Bad Request) and for the PUT request, this is 404 (Not Found).
