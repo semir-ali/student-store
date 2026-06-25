@@ -1,10 +1,8 @@
-import { PrismaClient } from '@prisma/client'
-import { readFileSync } from 'fs'
-import { fileURLToPath } from 'url'
-import { dirname, join } from 'path'
+const { PrismaClient } = require('@prisma/client')
+const { readFileSync } = require('fs')
+const { join } = require('path')
 
 const prisma = new PrismaClient()
-const __dirname = dirname(fileURLToPath(import.meta.url))
 
 async function seed() {
   try {
