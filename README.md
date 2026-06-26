@@ -111,6 +111,7 @@ The labs helped me especially with understanding how Prisma and PostgreSQL works
 If I had more time, I would have added the ability to have user accounts. These accounts also could create their own products associated with them (like Amazon where users can be their own product owners) and products displayed on the websites can have associated with their owners. 
 
 * Reflect on your project demo, what went well? Were there things that maybe didn't go as planned? Did you notice something that your peer did that you would like to try next time?
+
 I think for my project demo, I was able to explicitly describe how the project works from both a backend and frontend perspective, and show the user story from one time to another.
 
 ### Open-source libraries used
