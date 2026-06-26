@@ -4,7 +4,7 @@
 
 Submitted by: Semir Ali
 
-Deployed Application (optional): [Student Store Deployed Site](https://www.loom.com/share/fdc58dbb06884d6984395101066d67fe)
+Deployed Application (optional): [Student Store Deployed Site]()
 
 ### Application Features
 
@@ -99,11 +99,7 @@ Deployed Application (optional): [Student Store Deployed Site](https://www.loom.
 
 
 ### Walkthrough Video
-
-`TODO://` Add the embedded URL code to your animated app walkthrough below, `ADD_EMBEDDED_CODE_HERE`. Make sure the video or gif actually renders and animates when viewing this README. (🚫 Remove this paragraph after adding walkthrough video)
-
-`ADD_EMBEDDED_CODE_HERE`
-
+https://www.loom.com/share/fdc58dbb06884d6984395101066d67fe
 ### Reflection
 
 * Did the topics discussed in your labs prepare you to complete the assignment? Be specific, which features in your weekly assignment did you feel unprepared to complete?
