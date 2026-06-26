@@ -113,8 +113,6 @@ If I had more time, I would have added the ability to have user accounts. These 
 * Reflect on your project demo, what went well? Were there things that maybe didn't go as planned? Did you notice something that your peer did that you would like to try next time?
 I think for my project demo, I was able to explicitly describe how the project works from both a backend and frontend perspective, and show the user story from one time to another.
 
-Add your response here
-
 ### Open-source libraries used
 
 - Add any links to open-source libraries used in your project.
