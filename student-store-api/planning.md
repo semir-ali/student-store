@@ -16,6 +16,7 @@ Cascade Delete Rules: If a product is deleted, any OrderItems referencing it are
 Orders:
 Field | Prisma Data Type | Required or Optional | Default Value
 order_id | Int | Required | @id @default(autoincrement())
+customer_id | Int | Required | @default(autoincrement())
 customer_name | String | Required | N/A
 customer_email | String | Required | N/A
 total_price | Float | Required | N/A
@@ -170,7 +171,7 @@ POST /orders
   }
 - Error Case:
   Status: 400
-  Body Example: { "error": "Missing required fields: customer_name, customer_email, items" }
+  Body Example: { status: 400, "error": "Missing required fields: customer_name, customer_email, items" }
 - Error Case:
   Status: 404
   Body Example: { "error": "Product in Order is not found" }
@@ -201,6 +202,60 @@ DELETE /orders/:order_id
 - Error Case:
   Status: 404
   Body Example: { "error": "Order not found" }
+
+GET /order-items
+- HTTP Method & Path: GET /order-items
+- Body: N/A
+- Request Params: N/A
+- Success Response:
+  Status: 200
+  Example Body: {
+  "orderItems": [
+    {
+      "order_item_id": 1,
+      "order_id": 12,
+      "product_id": 5,
+      "quantity": 2,
+      "price": 9.99
+    },
+    {
+      "order_item_id": 2,
+      "order_id": 12,
+      "product_id": 8,
+      "quantity": 1,
+      "price": 24.50
+    }
+  ]
+}
+- Error Response:
+  Status: 500
+  Example Body: {
+    "error": "Unable to fetch order items."
+  }
+
+POST /orders/:order_id/items
+- HTTP Method & Path: POST /orders/:order_id/items
+- Request Param: order_id
+- Query Param: N/A
+- Success Response:
+  Status: 201
+  Example Body: {
+  "orderItem": {
+    "order_item_id": 7,
+    "order_id": 12,
+    "product_id": 5,
+    "quantity": 2,
+    "price": 9.99
+  }
+}
+- Error Response:
+  Status: 404
+  Example Body:
+  { 
+    "error": {
+      "Order with id 12 not found."
+    }
+  }
 
 #### Transactional Flow
 The entire flow below runs inside a single Prisma `$transaction` so it is atomic:
@@ -251,8 +306,8 @@ When POST /orders is requested by the user, the following should happen:
 Schema fit spec completely and there were no gaps!
 
 ### Cascade delete verification
-- Deleting a Product removes associated OrderItems: ✅ tested
-- Deleting an Order removes associated OrderItems: ✅ tested
+- Deleting a Product removes associated OrderItems: tested
+- Deleting an Order removes associated OrderItems: tested
 
 ## Decisions Log — Order Creation Transaction
 

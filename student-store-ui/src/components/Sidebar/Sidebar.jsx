@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom"
 import ShoppingCart from "../ShoppingCart/ShoppingCart"
+import PastOrders from "../PastOrders/PastOrders"
 import logo from "../../assets/codepath.svg"
 import "./Sidebar.css"
 
@@ -33,7 +34,9 @@ function Sidebar({ cart, isOpen, products, userInfo, setUserInfo, toggleSidebar,
           order={order}
           setOrder={setOrder}
         />
-        
+
+        {isOpen && <PastOrders />}
+
       </div>
     </section>
   )

@@ -27,6 +27,7 @@ model Product {
 
 model Order {
   order_id       Int      @id @default(autoincrement())
+  customer_id    Int      @default(autoincrement())
   customer_name  String
   customer_email String
   total_price    Float

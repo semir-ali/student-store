@@ -95,12 +95,59 @@ const createOrder = async (req, res) => {
   }
 }
 
+// POST /orders/:order_id/items — add a single line item to an existing order.
+// Body: { product_id, quantity }. price is captured server-side from the product.
+const addOrderItem = async (req, res) => {
+  const { product_id, quantity } = req.body
+  if (product_id === undefined || quantity === undefined) {
+    return res.status(400).json({ error: 'Missing required fields: product_id, quantity' })
+  }
+
+  const order = await prisma.order.findUnique({
+    where: { order_id: Number(req.params.order_id) },
+  })
+  if (!order) {
+    return res.status(404).json({ error: `Order with id ${req.params.order_id} not found.` })
+  }
+
+  const product = await prisma.product.findUnique({
+    where: { id: Number(product_id) },
+  })
+  if (!product) {
+    return res.status(404).json({ error: 'Product in Order is not found' })
+  }
+
+  try {
+    const orderItem = await prisma.orderItem.create({
+      data: {
+        order_id: order.order_id,
+        product_id: product.id,
+        quantity: Number(quantity),
+        // Capture the product's current price at the time it is added.
+        price: product.price,
+      },
+    })
+    res.status(201).json({ orderItem })
+  } catch (err) {
+    res.status(500).json({ error: 'Unable to add item to order.' })
+  }
+}
+
 // PUT /orders/:order_id — update an existing order (typically status)
 const updateOrder = async (req, res) => {
   try {
+    // Only update the editable fields that were actually sent in the body.
+    const editable = ['customer_name', 'customer_email', 'status']
+    const data = {}
+    for (const field of editable) {
+      if (req.body[field] !== undefined) {
+        data[field] = req.body[field]
+      }
+    }
+
     const order = await prisma.order.update({
       where: { order_id: Number(req.params.order_id) },
-      data: { status: req.body.status },
+      data,
     })
     res.status(200).json(order)
   } catch (err) {
@@ -132,6 +179,7 @@ module.exports = {
   getOrders,
   getOrderById,
   createOrder,
+  addOrderItem,
   updateOrder,
   deleteOrder,
 }

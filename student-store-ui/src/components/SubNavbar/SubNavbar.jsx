@@ -1,9 +1,12 @@
 import "./SubNavbar.css"
 
-function SubNavbar({ activeCategory, setActiveCategory, searchInputValue, handleOnSearchInputChange }) {
+function SubNavbar({ activeCategory, setActiveCategory, searchInputValue, handleOnSearchInputChange, sort, handleToggleSort }) {
+
+  // Label reflects the current sort the backend is applying (by price).
+  const sortLabel = sort === "asc" ? "Price: Low to High" : sort === "desc" ? "Price: High to Low" : "Sort by Price";
 
 
-  const categories = ["All Categories", "Accessories", "Apparel", "Books", "Snacks", "Supplies"];
+  const categories = ["All Categories", "Accessories", "Apparel", "Books", "Snacks", "Supplies", "Local Fast Food"];
 
   return (
     <nav className="SubNavbar">
@@ -21,6 +24,9 @@ function SubNavbar({ activeCategory, setActiveCategory, searchInputValue, handle
             />
             <i className="material-icons">search</i>
           </div>
+          <button className="sort-button" onClick={handleToggleSort}>
+            {sortLabel}
+          </button>
         </div>
 
         <div className="row">

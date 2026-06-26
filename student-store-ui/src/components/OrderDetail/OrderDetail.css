@@ -1,0 +1,72 @@
+.OrderDetail {
+  position: fixed;
+  inset: 0;
+  z-index: 1100;
+  background: var(--grey-bg);
+  overflow-y: auto;
+  padding: 48px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.order-detail-back {
+  align-self: flex-start;
+  background: none;
+  border: none;
+  color: var(--dark-blue);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-bottom: 24px;
+}
+
+.order-detail-status,
+.order-detail-error {
+  color: var(--font-light);
+}
+.order-detail-error {
+  color: var(--bright-red);
+}
+
+.order-detail-card {
+  background: var(--pure-white);
+  width: 100%;
+  max-width: 720px;
+  padding: 32px;
+  border-radius: 10px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+}
+.order-detail-card h1 {
+  margin: 0 0 4px;
+}
+.order-detail-meta {
+  color: var(--font-light);
+  margin: 0 0 4px;
+}
+.order-detail-customer {
+  color: var(--font-light);
+  margin: 0 0 24px;
+}
+
+.order-detail-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.order-detail-table th,
+.order-detail-table td {
+  text-align: left;
+  padding: 12px 8px;
+  border-bottom: 1px solid var(--border-color);
+}
+.order-detail-table th {
+  color: var(--font-light);
+  font-weight: 600;
+}
+
+.order-detail-total {
+  margin-top: 24px;
+  text-align: right;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
