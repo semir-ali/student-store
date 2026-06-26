@@ -4,7 +4,7 @@
 
 Submitted by: Semir Ali
 
-Deployed Application (optional): [Student Store Deployed Site]()
+Deployed Application (optional):
 
 ### Application Features
 
